@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Template
+https://kalles-demo.myshopify.com/collections/women/products/analogue-resin-strap
