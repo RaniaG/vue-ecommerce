@@ -1,12 +1,10 @@
 export default {
     state: {
-        items: ['abc'],
-        total: 0,
+        items: [],
     },
     getters: {
         getCount(state) {
             return state.items.length;
         }
     }
-
 }
