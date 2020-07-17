@@ -1,0 +1,11 @@
+.price {
+    font-size: 0.9rem;
+    &--old {
+      color: grey;
+      text-decoration: line-through;
+    }
+    &--new {
+      color: #e54600;
+      margin-left: 0.2rem;
+    }
+  }

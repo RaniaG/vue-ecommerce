@@ -7,6 +7,9 @@ module.exports = {
                   @import "@/sass/abstracts/_mixins.scss";
                   @import "@/sass/abstracts/_functions.scss";
                   @import "@/sass/abstracts/_placeholders.scss";
+                  @import "@/sass/components/_label.scss";
+                  @import "@/sass/components/_price.scss";
+                  @import "@/sass/components/_fav.scss";
 
                 `
             }

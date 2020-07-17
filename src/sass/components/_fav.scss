@@ -1,0 +1,10 @@
+.fa-heart.fav {
+    margin: 0.5rem;
+    &:hover {
+      cursor: pointer;
+      color: aqua;
+    }
+    &.fas {
+      color: #e81e63;
+    }
+  }
