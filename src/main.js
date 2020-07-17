@@ -12,6 +12,8 @@ import dropDown from './components/shared/components/dropdown';
 import pagedList from './components/shared/components/pagedList';
 import ZoomOnHover from "vue-zoom-on-hover";
 import rating from './components/shared/components/rating';
+import tabs from './components/shared/components/tabs';
+
 Vue.use(ZoomOnHover);
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -19,6 +21,8 @@ Vue.use(VueRouter);
 Vue.component('app-dropdown', dropDown)
 Vue.component('app-paged-list', pagedList);
 Vue.component('app-rating', rating);
+Vue.component('app-tabs', tabs);
+
 
 
 new Vue({

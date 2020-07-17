@@ -58,12 +58,14 @@ img {
 
   &__title {
     margin-top: 1rem;
+    font-size: 1.6rem;
   }
   &__fav {
     position: absolute;
     z-index: 3;
     top: 0;
     left: 0;
+    font-size: 1.6rem;
   }
 
   &__buttons {
@@ -76,6 +78,7 @@ img {
     height: 100%;
     flex-direction: column;
     & .btn {
+      font-size: 1.4rem;
       border-radius: 2rem;
       background-color: white;
       border-color: white;
@@ -84,8 +87,7 @@ img {
       padding: 0.5rem 1rem;
     }
   }
-  &__label {
-  }
+
   &__overlay {
     width: 100%;
     top: 0;

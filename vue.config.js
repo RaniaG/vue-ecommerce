@@ -10,7 +10,8 @@ module.exports = {
                   @import "@/sass/components/_label.scss";
                   @import "@/sass/components/_price.scss";
                   @import "@/sass/components/_fav.scss";
-
+                  @import "@/sass/components/_link.scss";
+                  @import "@/sass/components/_headings.scss";
                 `
             }
 
