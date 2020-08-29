@@ -1,6 +1,5 @@
 <template>
   <div>
-    list
     <app-paged-list col="3">
       <app-product-card product="sd" slot="list-item"></app-product-card>
     </app-paged-list>

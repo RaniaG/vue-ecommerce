@@ -4,22 +4,22 @@
       <div class="col-md-10">
         <div class="row">
           <div class="col-md-6">
-            <div class="product-details__images">
-              <div class="product-details__images__group">
-                <div class="product-details__images__group__item">
+            <div class="img-group">
+              <div class="img-group__group">
+                <div class="img-group__group__item">
                   <img src="@/assets/details-1.jpg" alt />
                 </div>
-                <div class="product-details__images__group__item">
+                <div class="img-group__group__item">
                   <img src="@/assets/details-2.jpg" alt />
                 </div>
-                <div class="product-details__images__group__item">
+                <div class="img-group__group__item">
                   <img src="@/assets/details-3.jpg" alt />
                 </div>
-                <div class="product-details__images__group__item">
+                <div class="img-group__group__item">
                   <img src="@/assets/details-4.jpg" alt />
                 </div>
               </div>
-              <div class="product-details__images__main">
+              <div class="img-group__main">
                 <div class="label-container">
                   <div
                     class="label"
@@ -161,37 +161,6 @@ export default {
 
 <style lang="scss" scoped>
 .product-details {
-  &__images {
-    @include for-desktop-up {
-      @include flex-box(row, center, flex-start);
-    }
-    @include flex-box(column-reverse);
-    &__group {
-      @include for-desktop-up {
-        @include flex-box(column);
-        width: 15%;
-      }
-      width: 100%;
-      @include flex-box(row, space-between);
-      &__item {
-        & img {
-          width: 100%;
-        }
-        width: 10rem;
-        @include for-desktop-up {
-          width: 7rem;
-          padding-bottom: 1rem;
-        }
-      }
-    }
-    &__main {
-      width: 100%;
-      position: relative;
-      img {
-        width: 100%;
-      }
-    }
-  }
   &__title {
     font-weight: 700;
     font-size: 1.6rem;

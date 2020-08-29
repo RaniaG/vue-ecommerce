@@ -55,7 +55,7 @@ img {
 .product-card {
   position: relative;
   overflow: hidden;
-
+  min-width: 25rem;
   &__title {
     margin-top: 1rem;
     font-size: 1.6rem;
