@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col-10">
         <div class="row">
           <div class="col-md-6">
             <div class="img-group">
@@ -39,8 +39,8 @@
               <input type="text" placeholder="Title" v-model="product.title" class="form-control" />
             </div>
             <div class="form-group my-sm-3 input-group-lg">
-              <h2 class="heading-2">Brief Description</h2>
-              <textarea class="form-control" placeholder="Description" />
+              <h2 class="heading-2">Brief</h2>
+              <textarea v-model="product.brief" class="form-control" placeholder="Description" />
             </div>
             <h2 class="heading-2">Pricing</h2>
             <div class="form-check">
@@ -68,6 +68,47 @@
                   v-model="product.price.old"
                 />
               </div>
+            </div>
+            <div class="form-group input-group-lg">
+              <h2 class="heading-2">Categories</h2>
+              <select
+                class="form-control form-control-lg"
+                @change="addCategory($event.target.value)"
+                ref="categorySelect"
+              >
+                <option selected disabled>Select Category</option>
+                <option v-for="cat in categories" :key="cat" :value="cat">{{cat}}</option>
+              </select>
+            </div>
+            <div class="container" v-show="product.categories.length>0">
+              <span
+                class="badge badge-pill badge-secondary"
+                v-for="item in product.categories"
+                v-bind:key="item"
+              >
+                {{item}}
+                <i class="fas fa-times-circle" @click="deleteCategory(item)"></i>
+              </span>
+            </div>
+            <div class="form-group input-group-lg">
+              <h2 class="heading-2">Tags</h2>
+              <input
+                class="form-control"
+                type="text"
+                ref="tagInput"
+                @keydown.enter="addTag($event.target.value)"
+                placeholder="Tag"
+              />
+            </div>
+            <div class="container" v-show="product.tags.length>0">
+              <span
+                class="badge badge-pill badge-secondary"
+                v-for="item in product.tags"
+                v-bind:key="item"
+              >
+                {{item}}
+                <i class="fas fa-times-circle" @click="deleteTag(item)"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -152,50 +193,32 @@
             <input v-else type="text" placeholder="Quantity" />
           </div>
         </div>
+
         <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <h2 class="heading-2">Categories</h2>
-              <select
-                class="form-control form-control-lg"
-                @change="addCategory($event.target.value)"
-                ref="categorySelect"
-              >
-                <option selected disabled>Select Category</option>
-                <option v-for="cat in categories" :key="cat" :value="cat">{{cat}}</option>
-              </select>
-            </div>
-            <div class="container" v-show="product.categories.length>0">
-              <span
-                class="badge badge-pill badge-secondary"
-                v-for="item in product.categories"
-                v-bind:key="item"
-              >
-                {{item}}
-                <i class="fas fa-times-circle" @click="deleteCategory(item)"></i>
-              </span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <h2 class="heading-2">Tags</h2>
-              <input
-                type="text"
-                ref="tagInput"
-                @keydown.enter="addTag($event.target.value)"
-                placeholder="Tag"
+          <div class="col-md-12">
+            <div class="form-group my-5 input-group-lg">
+              <h2 class="heading-2">Description</h2>
+              <textarea
+                v-model="product.description"
+                class="form-control"
+                placeholder="Description"
               />
             </div>
-            <div class="container" v-show="product.tags.length>0">
-              <span
-                class="badge badge-pill badge-secondary"
-                v-for="item in product.tags"
-                v-bind:key="item"
-              >
-                {{item}}
-                <i class="fas fa-times-circle" @click="deleteTag(item)"></i>
-              </span>
+            <div class="form-group my-5 input-group-lg">
+              <h2 class="heading-2">Warranty</h2>
+              <textarea v-model="product.warranty" class="form-control" placeholder="Description" />
             </div>
+            <div class="form-group my-5 input-group-lg">
+              <h2 class="heading-2">Shipping</h2>
+              <textarea v-model="product.shipping" class="form-control" placeholder="Description" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-primary">Submit</button>
           </div>
         </div>
       </div>
