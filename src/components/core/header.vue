@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">E-Commerce</a>
+      <a class="navbar-brand logo">E-Commerce</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -15,7 +15,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto mr-auto">
+        <ul class="navbar-nav mr-auto ml-auto">
           <router-link tag="li" class="nav-item" active-class="active" to="/">
             <a class="nav-link">Home</a>
           </router-link>
@@ -23,61 +23,47 @@
             <a class="nav-link">Products</a>
           </router-link>
         </ul>
-        <transition
-          leave-active-class="animate__animated animate__fadeOutRight 1s"
-          enter-active-class="animate__animated animate__fadeInRight 1s"
-        >
-          <form class="form-inline my-2 my-lg-0" v-if="searchVisible">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-          </form>
-        </transition>
-        <i class="fas fa-search fa-lg" @click="searchVisible=!searchVisible"></i>
-        <app-dropdown width="10rem">
-          <i class="far fa-user fa-lg" slot="button"></i>
-          <ul class="list-group" slot="content">
-            <li class="list-group-item">
+        <div class="d-flex flex-row align-items-center">
+          <transition
+            leave-active-class="animate__animated animate__fadeOutRight 0.1s"
+            enter-active-class="animate__animated animate__fadeInRight 0.1s"
+          >
+            <form class="form-inline my-2 my-lg-0" v-if="searchVisible">
+              <input
+                class="form-control mr-sm-2 form-control-lg"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </form>
+          </transition>
+          <i class="fas fa-search fa-lg" @click="searchVisible=!searchVisible"></i>
+          <app-dropdown width="10rem" :numberOfItems="2">
+            <i class="far fa-user fa-lg" slot="button"></i>
+            <span slot="content-1">
               <i class="fas fa-shipping-fast"></i> Orders
-            </li>
-            <li class="list-group-item">
+            </span>
+            <span slot="content-2">
               <i class="far fa-heart fa-lg"></i> Wishlist
-            </li>
-          </ul>
-        </app-dropdown>
-
-        <app-dropdown width="10rem">
-          <div slot="button" class="cart-btn">
+            </span>
+          </app-dropdown>
+          <div class="shopping-cart">
+            <span class="shopping-cart__count">1</span>
             <i class="fas fa-shopping-cart fa-lg"></i>
           </div>
-          <ul class="list-group" slot="content">
-            <li class="list-group-item">
-              <app-cart-item></app-cart-item>
-            </li>
-            <li class="list-group-item">
-              <app-cart-item></app-cart-item>
-            </li>
-          </ul>
-        </app-dropdown>
+        </div>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
-import cartItem from "../cart/cart-item";
 export default {
   data: function() {
     return {
       searchVisible: false,
       searchText: ""
     };
-  },
-  components: {
-    "app-cart-item": cartItem
   }
 };
 </script>
@@ -90,12 +76,30 @@ export default {
     cursor: pointer;
   }
 }
-.cart-btn::before {
-  position: absolute;
-  width: 1rem;
-  height: 1rem;
-  background-color: red;
-  right: 0;
-  z-index: 10;
+
+.logo {
+  font-size: 2rem;
+  font-weight: 900;
+}
+.navbar {
+  padding: 2rem 2rem;
+}
+.shopping-cart {
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  &__count {
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    padding: 0 0.5rem;
+    @include flex-box;
+    right: -25%;
+    top: -50%;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+  }
 }
 </style>

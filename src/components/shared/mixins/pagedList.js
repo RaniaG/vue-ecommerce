@@ -5,7 +5,7 @@ export default {
       page: [],
       pageNumber: 1,
       pageSize: 10,
-      numberOfPages: 1,
+      numberOfPages: 20,
       url: "",
       query: "",
       sortList: [],
@@ -20,7 +20,7 @@ export default {
     },
     getFiltersList() {
       this.filtersList = [
-        { header: 'Brands', type: 'text', values: ['CK', 'Kalles', 'Chanel'] },
+        { header: 'Brands', type: 'text', values: ['CK', 'Kalles', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel', 'Chanel'] },
         { header: 'Price', type: 'range', range: [0, 100] },
         { header: 'Colors', type: 'color', values: ['#FCC6DE', '#E9F09D', '#25BDB0'] }]
     },

@@ -1,9 +1,11 @@
-@mixin flex-box($direction:row,$justify-content:center,$align-items:center,$align-content:flex-start) {
+@mixin flex-box($direction:row,$justify-content:center,$align-items:center,
+$align-content:flex-start,$wrap:nowrap) {
     display:flex;
     flex-direction: $direction;
     justify-content: $justify-content;
     align-items: $align-items;
     align-content:$align-content;
+    flex-wrap: $wrap;
   }
 @mixin for-phone-only {
   @media (max-width: 576px) { @content; }

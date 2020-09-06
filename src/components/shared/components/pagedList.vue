@@ -6,27 +6,40 @@
         <span>Filter</span>
         <i class="fas fa-times" @click="showFilter=false"></i>
       </div>
-      <div class="side-menu__section" v-for="item in filtersList" :key="'filter-'+item.header">
+      <div class="side-menu__section" v-for="item in filtersList" :key="`filter-${item.header}`">
         <div class="side-menu__section__title">{{item.header}}</div>
-        <div class="side-menu__section__item">
-          <input type="checkbox" :id="check" />
-          <label for="check">Label</label>
+        <div class="side-menu__section__body" v-if="item.type=='text'">
+          <div
+            class="side-menu__section__item"
+            v-for="value in item.values"
+            :key="`filter-value-${value}`"
+          >
+            <input type="checkbox" :id="`check-${value}`" />
+            <label :for="`check-${value}`">{{value}}</label>
+          </div>
         </div>
-        <div class="side-menu__section__item">
-          <input type="checkbox" id="check2" />
-          <label for="check2">
-            <div class="side-menu__section__item__color"></div>
-          </label>
+        <div class="side-menu__section__body" v-else-if="item.type=='color'">
+          <div
+            class="side-menu__section__item"
+            v-for="value in item.values"
+            :key="`filter-value-${value}`"
+          >
+            <input type="checkbox" :id="`check-${value}`" />
+            <label :for="`check-${value}`">
+              <div class="side-menu__section__item__color" :style="{'background-color':value}"></div>
+            </label>
+          </div>
         </div>
-        <div class="side-menu__section__title">Price</div>
-        <div class="side-menu__section__item">
-          <app-range-slider
-            :min="minPrice"
-            :max="maxPrice"
-            :formatter="formatter"
-            v-model="priceRange"
-            width="100%"
-          ></app-range-slider>
+        <div class="side-menu__section__body" v-else-if="item.type=='range'">
+          <div class="side-menu__section__item">
+            <app-range-slider
+              :min="item.range[0]"
+              :max="item.range[1]"
+              :formatter="formatter"
+              v-model="priceRange"
+              width="100%"
+            ></app-range-slider>
+          </div>
         </div>
       </div>
     </div>
@@ -45,8 +58,14 @@
               aria-expanded="false"
             >Sort By</button>
 
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" v-for="item in sortList" :key="'sort-'+item">{{item}}</a>
+            <div class="dropdown-menu dropdown-menu-lg-left" aria-labelledby="dropdownMenuLink">
+              <a
+                class="dropdown-item"
+                :class="{'active':sortBy==item}"
+                @click="sortBy=item"
+                v-for="item in sortList"
+                :key="'sort-'+item"
+              >{{item}}</a>
             </div>
           </div>
         </div>
@@ -57,19 +76,16 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-secondary">
-                <i class="fas fa-chevron-left"></i>
-              </button>
+            <div class="pagination">
+              <button type="button" class="pagination__btn" v-if="pageNumber>1">Prev</button>
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="pagination__btn"
+                :class="{active:i==pageNumber}"
                 v-for="i in numberOfPages"
                 :key="i"
               >{{i}}</button>
-              <button type="button" class="btn btn-secondary">
-                <i class="fas fa-chevron-right"></i>
-              </button>
+              <button type="button" class="pagination__btn" v-if="pageNumber<numberOfPages">Next</button>
             </div>
           </div>
         </div>
@@ -84,8 +100,6 @@ export default {
   data: function() {
     return {
       showFilter: false,
-      minPrice: 0,
-      maxPrice: 100,
       formatter: val => `$${val}`,
       priceRange: [0, 100]
     };
@@ -112,18 +126,30 @@ export default {
     padding: 1rem 2rem;
     border-radius: 2rem;
   }
+  &-menu {
+    font-size: 1.6rem;
+  }
+  &-item {
+    &:hover {
+      cursor: pointer;
+    }
+    &.active,
+    &:active {
+      background-color: $primary-color;
+    }
+  }
 }
 .list-header {
   @include flex-box(row, space-between, baseline);
+  width: 100%;
 }
 .side-menu {
-  position: absolute;
+  position: fixed;
   width: 35rem;
   background: white;
   z-index: 4;
   top: 0;
   height: 100%;
-
   &.active {
     animation: Slide-Right;
     animation-duration: 0.5s;
@@ -139,7 +165,7 @@ export default {
     z-index: 4;
     background-color: black;
     opacity: 50%;
-    position: absolute;
+    position: fixed;
     height: 100%;
     top: 0;
   }
@@ -188,7 +214,27 @@ export default {
       }
     }
     &__body {
-      max-width: 3rem;
+      max-height: 20rem;
+      overflow-y: auto;
+      overflow-x: hidden;
+      margin: 1rem 0;
+    }
+  }
+}
+.vue-range-slider {
+  margin-top: 3rem;
+}
+.pagination {
+  font-size: 1.6rem;
+  margin: 5rem 0;
+  @include flex-box(row, center, center, flex-start, wrap);
+  &__btn {
+    border: none;
+    background-color: transparent;
+    margin: 0 0.2rem;
+    &:hover,
+    &.active {
+      color: $red-color;
     }
   }
 }

@@ -23,6 +23,6 @@ html {
   font-size: 62.5%;
 } /* =10px */
 body {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 } /* =14px */
 </style>
