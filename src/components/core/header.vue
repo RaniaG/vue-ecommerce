@@ -47,24 +47,30 @@
               <i class="far fa-heart fa-lg"></i> Wishlist
             </span>
           </app-dropdown>
-          <div class="shopping-cart">
+          <div class="shopping-cart" @click="showCart=true">
             <span class="shopping-cart__count">1</span>
             <i class="fas fa-shopping-cart fa-lg"></i>
           </div>
         </div>
       </div>
     </nav>
+    <app-cart-menu v-model="showCart"></app-cart-menu>
   </div>
 </template>
 
 <script>
+import cartMenu from "../cart/cart-side-menu";
 export default {
-  data: function() {
+  components: {
+    "app-cart-menu": cartMenu,
+  },
+  data: function () {
     return {
       searchVisible: false,
-      searchText: ""
+      searchText: "",
+      showCart: false,
     };
-  }
+  },
 };
 </script>
 

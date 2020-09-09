@@ -13,6 +13,8 @@ module.exports = {
                   @import "@/sass/components/_link.scss";
                   @import "@/sass/components/_headings.scss";
                   @import "@/sass/components/_img-group.scss";
+                  @import "@/sass/components/_side-menu.scss";
+
                 `
             }
 

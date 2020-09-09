@@ -1,0 +1,68 @@
+.side-menu {
+    position: fixed;
+    width: 35rem;
+    background: white;
+    z-index: 4;
+    top: 0;
+    height: 100%;
+    &-overlay {
+        width: 100%;
+        z-index: 4;
+        background-color: black;
+        opacity: 50%;
+        position: fixed;
+        height: 100%;
+        top: 0;
+    }
+    &__header {
+        background-color: black;
+        color: white;
+        padding: 1rem;
+        font-size: 2rem;
+        @include flex-box(row, space-between);
+        & span {
+            font-weight: 700;
+        }
+        & i:hover {
+            cursor: pointer;
+        }
+    }
+    &__section {
+        margin: 1rem;
+        &__title {
+            padding: 1rem 0;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            font-size: 1.8rem;
+            &:after {
+                position: absolute;
+                content: "";
+                width: 90%;
+                border-bottom: 2px solid black;
+                bottom: 0;
+                left: 0;
+            }
+        }
+        &__item {
+            margin-top: 1rem;
+            @include flex-box(row, start, center);
+            & label {
+                margin-left: 1rem;
+                margin-bottom: 0;
+            }
+            &__color {
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                background-color: red;
+            }
+        }
+        &__body {
+            max-height: 20rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin: 1rem 0;
+        }
+    }
+}

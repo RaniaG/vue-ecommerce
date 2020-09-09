@@ -30,10 +30,10 @@ Vue.component('app-range-slider', VueRangeSlider);
 
 
 new Vue({
-  render: h => h(App),
-  router: new VueRouter({
-    routes,
-    mode: 'history'
-  }),
-  store
+    render: h => h(App),
+    router: new VueRouter({
+        routes,
+        mode: 'history'
+    }),
+    store
 }).$mount('#app')
