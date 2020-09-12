@@ -15,7 +15,12 @@
               v-for="value in item.values"
               :key="`filter-value-${value}`"
             >
-              <input type="checkbox" :id="`check-${value}`" />
+              <input
+                type="checkbox"
+                :id="`check-${value}`"
+                :value="value"
+                v-model="filtersValues[item.header].values"
+              />
               <label :for="`check-${value}`">{{value}}</label>
             </div>
           </div>
@@ -25,7 +30,12 @@
               v-for="value in item.values"
               :key="`filter-value-${value}`"
             >
-              <input type="checkbox" :id="`check-${value}`" />
+              <input
+                type="checkbox"
+                :id="`check-${value}`"
+                :value="value"
+                v-model="filtersValues[item.header].values"
+              />
               <label :for="`check-${value}`">
                 <div class="side-menu__section__item__color" :style="{'background-color':value}"></div>
               </label>
@@ -37,11 +47,15 @@
                 :min="item.range[0]"
                 :max="item.range[1]"
                 :formatter="formatter"
-                v-model="priceRange"
+                v-model="filtersValues[item.header].range"
                 width="100%"
               ></app-range-slider>
             </div>
           </div>
+        </div>
+        <div class="side-menu__footer p-3">
+          <button class="button button--secondary" @click="filter">Clear Filters</button>
+          <button class="button button--primary" @click="filter">Apply Filters</button>
         </div>
       </div>
     </transition>
@@ -101,14 +115,15 @@ import pagedListMixin from "../mixins/pagedList";
 export default {
   data: function () {
     return {
-      showFilter: false,
       formatter: (val) => `$${val}`,
       priceRange: [0, 100],
+      showFilter: false,
     };
   },
   mixins: [pagedListMixin],
   props: {
     col: String,
+    hasFilters: String,
   },
   created() {
     this.page = [1, 2, 3, 4];

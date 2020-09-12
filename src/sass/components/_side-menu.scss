@@ -65,4 +65,11 @@
             margin: 1rem 0;
         }
     }
+    &__footer {
+        position: fixed;
+        width: inherit;
+        box-shadow: 0px -5px 10px $grey-4;
+        bottom: 0;
+        background-color: white;
+    }
 }

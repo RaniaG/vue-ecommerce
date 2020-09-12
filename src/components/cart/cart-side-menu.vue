@@ -10,6 +10,16 @@
         <div class="side-menu__body">
           <app-cart-item v-for="item in cartItems" :key="item.id" :cartItem="item"></app-cart-item>
         </div>
+        <div class="side-menu__footer cart-footer">
+          <div class="cart-footer__total">
+            <h2 class="heading-2">SubTotal:</h2>
+            <span class="price">{{total}}$</span>
+          </div>
+          <div class="cart-footer__buttons">
+            <button class="button button--secondary">view cart</button>
+            <button class="button button--primary">check out</button>
+          </div>
+        </div>
       </div>
     </transition>
   </div>
@@ -28,6 +38,10 @@ export default {
           title: "Analogue Resin Strap 1",
           price: 30,
           quantity: 2,
+          filters: [
+            { key: "size", type: "text", value: "S" },
+            { key: "color", type: "color", value: "blue" },
+          ],
         },
         {
           id: 2,
@@ -103,6 +117,11 @@ export default {
     };
   },
   props: ["value"],
+  computed: {
+    total() {
+      return this.cartItems.map((e) => e.price).reduce((acc, e) => acc + e);
+    },
+  },
   methods: {
     hideCart() {
       this.$emit("input", false);
@@ -129,6 +148,15 @@ export default {
 }
 .slide-left-leave-active {
   animation: slide-out 0.2s forwards;
+}
+.cart-footer {
+  padding: 1rem 2rem;
+  &__total {
+    @include flex-box(row, space-between);
+  }
+  &__buttons {
+    @include flex-box(column);
+  }
 }
 @keyframes slide-in {
   from {

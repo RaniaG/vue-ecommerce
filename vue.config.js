@@ -1,4 +1,7 @@
 module.exports = {
+    configureWebpack: {
+        devtool: 'source-map'
+    },
     css: {
         loaderOptions: {
             sass: {
@@ -14,6 +17,8 @@ module.exports = {
                   @import "@/sass/components/_headings.scss";
                   @import "@/sass/components/_img-group.scss";
                   @import "@/sass/components/_side-menu.scss";
+                  @import "@/sass/components/_buttons.scss";
+
 
                 `
             }
