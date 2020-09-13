@@ -113,23 +113,23 @@
 <script>
 import pagedListMixin from "../mixins/pagedList";
 export default {
-  data: function () {
+  data: function() {
     return {
-      formatter: (val) => `$${val}`,
+      formatter: val => `$${val}`,
       priceRange: [0, 100],
-      showFilter: false,
+      showFilter: false
     };
   },
   mixins: [pagedListMixin],
   props: {
     col: String,
-    hasFilters: String,
+    hasFilters: String
   },
   created() {
     this.page = [1, 2, 3, 4];
     this.getSortList();
     this.getFiltersList();
-  },
+  }
 };
 </script>
 

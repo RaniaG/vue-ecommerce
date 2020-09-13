@@ -16,7 +16,7 @@
             <span class="price">{{total}}$</span>
           </div>
           <div class="cart-footer__buttons">
-            <button class="button button--secondary">view cart</button>
+            <router-link tag="button" to="/cart" class="button button--secondary">view cart</router-link>
             <button class="button button--primary">check out</button>
           </div>
         </div>
@@ -29,7 +29,7 @@
 import cartItem from "./cart-item";
 export default {
   components: { "app-cart-item": cartItem },
-  data: function () {
+  data: function() {
     return {
       cartItems: [
         {
@@ -40,93 +40,93 @@ export default {
           quantity: 2,
           filters: [
             { key: "size", type: "text", value: "S" },
-            { key: "color", type: "color", value: "blue" },
-          ],
+            { key: "color", type: "color", value: "blue" }
+          ]
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
+          quantity: 2
         },
         {
           id: 2,
           image: "../../assets/card-2.jpg",
           title: "Analogue Resin Strap 2",
           price: 30.5,
-          quantity: 2,
-        },
-      ],
+          quantity: 2
+        }
+      ]
     };
   },
   props: ["value"],
   computed: {
     total() {
-      return this.cartItems.map((e) => e.price).reduce((acc, e) => acc + e);
-    },
+      return this.cartItems.map(e => e.price).reduce((acc, e) => acc + e);
+    }
   },
   methods: {
     hideCart() {
       this.$emit("input", false);
-    },
-  },
+    }
+  }
 };
 </script>
 
